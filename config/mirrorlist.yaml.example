@@ -1,0 +1,205 @@
+debian:
+  type: distro
+  distributions: ["bookworm"]
+  suites: ["main", "updates", "backports", "security"]
+  components: ["main", "contrib", "non-free-firmware"]
+  mirror_appendix:
+    main: "debian"
+    updates: "debian"
+    backports: "debian"
+    security: "debian-security"
+  mirror: http://ftp.nl.debian.org
+  mirror_security: http://ftp.nl.debian.org
+ubuntu:
+  type: distro
+  distributions: ["jammy", "focal"]
+  suites: ["main", "updates", "backports", "security"]
+  components: ["main", "restricted", "universe", "multiverse"]
+  mirror_appendix:
+    updates: "ubuntu"
+    backports: "ubuntu"
+    security: "ubuntu"
+    main: "ubuntu"
+  mirror: http://nl.archive.ubuntu.com
+  mirror_security: http://security.ubuntu.com
+elasticsearch: #4GB
+  type: repo
+  distributions: ["stable"] # mandatory argument
+  suites: []                # optional argument
+  components: ["main"]      # optional argument
+  mirror_appendix: "apt"
+  mirror: https://artifacts.elastic.co/packages/7.x #deb https://artifacts.elastic.co/packages/7.x/apt stable main
+  mirror_security: []
+  packages: ["elasticsearch"]
+  versions: "% 7.17.*"
+keydb:
+  type: repo
+  distributions: ["bookworm", "jammy", "focal"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "open-source-dist"
+  mirror: https://download.keydb.dev #deb [arch=amd64] https://download.keydb.dev/open-source-dist 'bookworm' main
+  mirror_security: []
+  packages: []
+  versions: ""
+lynis:
+  type: repo
+  distributions: ["stable"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "community/lynis/deb"
+  mirror:  https://packages.cisofy.com  #deb [arch=amd64] https://download.keydb.dev/open-source-dist 'bookworm' main
+  mirror_security: []
+  packages: []
+  versions: ""
+colabonline: # 2GB
+  type: repo
+  distributions: ["./"]
+  suites: []
+  components: []
+  mirror_appendix: "repos/CollaboraOnline/CODE-ubuntu2204"
+  mirror: https://www.collaboraoffice.com
+  mirror_security: []
+  packages: []
+  versions:
+  mirrorfix: "dist"
+grafana:
+  type: repo
+  distributions: ["stable"]
+  suites: []
+  components: ["main"]
+  mirror_appendix:
+  mirror: https://apt.grafana.com
+  mirror_security: []
+  packages: ["grafana"]
+  versions: "% 10*"
+dotnet_focal:
+  type: repo
+  distributions: ["focal"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "ubuntu/20.04/prod"
+  mirror: https://packages.microsoft.com
+  mirror_security: []
+  packages: ["aspnetcore-runtime-6.0"]
+  versions:
+dotnet_jammy:
+  type: repo
+  distributions: ["jammy"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "ubuntu/22.04/prod"
+  mirror: https://packages.microsoft.com
+  mirror_security: []
+  packages: ["aspnetcore-runtime-6.0"]
+  versions:
+zammad_ubuntu:
+  type: repo
+  distributions: ["22.04"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "srv/deb/zammad/zammad/stable/ubuntu"
+  mirror: https://dl.packager.io
+  mirror_security: []
+  packages: ["zammad"]
+  versions: ">=6.2"
+zammad_debian:
+  type: repo
+  distributions: ["12"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "srv/deb/zammad/zammad/stable/debian"
+  mirror: https://dl.packager.io
+  mirror_security: []
+  packages: ["zammad"]
+  versions: ">=6.2"
+ksqldb:
+  type: repo
+  distributions: ["stable"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "deb/0.28"
+  mirror: http://ksqldb-packages.s3.amazonaws.com
+  mirror_security: []
+  packages:
+  versions:
+nginx_ubuntu:
+  type: repo
+  distributions: ["focal", "jammy"]
+  suites: []
+  components: ["unit"]
+  mirror_appendix: "unit/ubuntu"
+  mirror: https://packages.nginx.org
+  mirror_security: []
+  packages:
+  versions:
+nginx_debian:
+  type: repo
+  distributions: ["bookworm"]
+  suites: []
+  components: ["unit"]
+  mirror_appendix: "unit/debian"
+  mirror: https://packages.nginx.org
+  mirror_security: []
+  packages:
+  versions:
+icinga_ubuntu:
+  type: repo
+  distributions: ["icinga-jammy", "icinga-focal"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "ubuntu"
+  mirror: http://packages.icinga.com
+  mirror_security: []
+  packages:
+  versions:
+icinga_debian:
+  type: repo
+  distributions: ["icinga-bookworm"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "debian"
+  mirror: http://packages.icinga.com
+  mirror_security: []
+  packages:
+  versions:
+ppa_ondrej:
+  type: repo
+  distributions: ["focal", "jammy"]
+  suites: []
+  components: ["main"]
+  mirror_appendix: "php/ubuntu"
+  mirror: http://ppa.launchpad.net/ondrej
+  mirror_security: []
+  packages:
+  versions:
+docker_jammy:
+  type: repo
+  distributions: ["jammy"]
+  suites: []
+  components: ["stable"]
+  mirror_appendix: "linux/ubuntu"
+  mirror: https://download.docker.com
+  mirror_security: []
+  packages:
+  versions:
+docker_bookworm:
+  type: repo
+  distributions: ["bookworm"]
+  suites: []
+  components: ["stable"]
+  mirror_appendix: "linux/debian"
+  mirror: https://download.docker.com
+  mirror_security: []
+  packages:
+  versions:
+minio:
+  type: local
+  distributions: ["jammy", "bookworm"]
+  suites: []
+  components: []
+  mirror_appendix:
+  mirror:
+  mirror_security: []
+  packages:
+  versions:
