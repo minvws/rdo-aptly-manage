@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+import sys
+import yaml
+
+from aptly_libs import (
+    argparsing,
+    preflight_checks,
+    mirror,
+    snapshot,
+    publish,
+    supporting as sp,
+)
+
+
+def get_mirror_settings():
+    with open("/etc/aptly-manage/mirrorlist.yaml", "r") as f:
+        mirror_settings = yaml.safe_load(f)
+    return mirror_settings
+
+
+def process_command(mirror_settings, args):
+    lookup = {
+        "mirror": {
+            "create": mirror.mirror_create,
+            "drop": mirror.mirror_drop,
+            "list": mirror.mirror_list,
+            "update": mirror.mirror_update,
+        },
+        "snapshot": {
+            "create": snapshot.snapshot_create,
+            "list": snapshot.snapshot_list,
+            "drop": snapshot.snapshot_drop,
+        },
+        "publish": {
+            "snapshot": publish.publish_snapshot,
+            "drop": publish.publish_drop,
+            "update": "publish_update",
+            "switch": publish.publish_snapshot,
+        },
+    }
+    try:
+        function = lookup[args["command"]][args["action"]]
+    except KeyError:
+        print(f"Command {args['action']} not implemented for {args['command']} - is it the right action?")
+        sys.exit(1)
+    function(mirror_settings)
+
+
+if __name__ == "__main__":
+    mirror_settings = get_mirror_settings()
+    parser = argparsing.get_arguments(mirror_settings)
+    parameters = vars(argparsing.get_command_line_arguments(parser))
+    preflight_checks.preflight_check(parameters)
+    mirror_settings = sp.sanitize_repo(mirror_settings, parameters)
+    process_command(mirror_settings, parameters)
